@@ -6,7 +6,7 @@ Front-end
 React
 Recoil
 material-ui
-
+TailWind
 
 
 Back-end
