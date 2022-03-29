@@ -1,10 +1,16 @@
 import React from 'react';
+import '../../../src/input.css'
+
 
 const Header = () => {
     return (
-        <div>
-            <h1>header</h1>
-        </div>
+        <>
+           
+            <div className='bg-gray-100'>
+                즐겨찾기 입점신청 로그인 회원가입 고객센터
+            </div>  
+         
+        </>
     );
 };
 
