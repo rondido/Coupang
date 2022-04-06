@@ -30,6 +30,10 @@ const Selectstyled = styled.div`
 const Menustyled = styled.div`
   position: absolute;
 `;
+const Imgstyled=styled.image`
+width:100px;
+`;
+
 
 const selectlist = ["오픈마켓", "여행·티켓", "로켓배송", "제휴마케팅"];
 
@@ -77,19 +81,19 @@ const Header = () => {
           fill="none"
         >
           <line
-            x1="5"
-            y1="7"
-            x2="19"
-            y2="7"
+            x1="8"
+            y1="9"
+            x2="15"
+            y2="9"
             stroke="white"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           <line
-            x1="5"
+            x1="8"
             y1="12"
-            x2="19"
+            x2="15"
             y2="12"
             stroke="white"
             strokeWidth="2"
@@ -97,17 +101,25 @@ const Header = () => {
             strokeLinejoin="round"
           />
           <line
-            x1="5"
-            y1="17"
-            x2="19"
-            y2="17"
+            x1="8"
+            y1="15"
+            x2="15"
+            y2="15"
             stroke="white"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         </svg>
+        <a>카테고리</a>
       </CategoryBoxstyled>
+      <div>
+        <img className="CoupangImage" alt="coupang" src="img/coupang.jpg" width={174} height={41} />
+      </div>
+      <div>
+        전체
+        <text>123</text>
+      </div>
     </>
   );
 };
