@@ -2,6 +2,9 @@ import React from "react";
 import "../../../src/input.css";
 import styled from "styled-components";
 import { MenuItem, Select } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import FormControl from "@mui/material/FormControl";
 
 const Flexstyled = styled.div`
   display: flex;
@@ -30,12 +33,81 @@ const Selectstyled = styled.div`
 const Menustyled = styled.div`
   position: absolute;
 `;
-const Imgstyled=styled.image`
-width:100px;
+const Imgstyled = styled.image`
+  width: 100px;
 `;
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 150,
+    },
+  },
+};
 
 const selectlist = ["오픈마켓", "여행·티켓", "로켓배송", "제휴마케팅"];
+
+const names = [
+  "전체",
+  "여성패션",
+  "남성패션",
+  "남녀 공용 의류",
+  "유아동패션",
+  "뷰티",
+  "출산/유아동",
+  "식품",
+  "주방용품",
+  "생활용품",
+  "홈인테리어",
+  "가전디지털",
+  "스포츠/레저",
+  "자동차용품",
+  "도서/음반/DVD",
+  "완구/취미",
+  "문구/오피스",
+  "반려동물용품",
+  "헬스/건강식품",
+  "국내여행",
+  "해외여행",
+  "로켓설치",
+  "공간별 집꾸미기",
+  "헬스케어 전문관",
+  "쿠팡 Only",
+  "싱글라이프",
+  "악기전문관",
+  "결혼준비",
+  "아트/공예",
+  "홈카페",
+  "실버스토어",
+];
+
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+
+function MultipleSelectPlaceholder() {
+  const theme = useTheme();
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+}
 
 const Header = () => {
   const [visible, setVisible] = React.useState(false);
@@ -47,7 +119,7 @@ const Header = () => {
   const onMouseOver = () => {
     setVisible(true);
   };
-  
+
   return (
     <>
       <Flexstyled className="bg-gray-100 flex">
@@ -113,13 +185,43 @@ const Header = () => {
         </svg>
         <a>카테고리</a>
       </CategoryBoxstyled>
-      <div>
-        <img className="CoupangImage" alt="coupang" src="img/coupang.jpg" width={174} height={41} />
+      <div className="flex">
+        <img
+          className="CoupangImage"
+          alt="coupang"
+          src="img/coupang.jpg"
+          width={174}
+          height={41}
+        />
       </div>
-      <div>
-        전체
-        <text>123</text>
-      </div>
+      <FormControl sx={{ m: 1, width: 150, mt: 3 }}>
+        <Select
+          multiple
+          displayEmpty
+          value={personName}
+          onChange={handleChange}
+          input={<OutlinedInput />}
+          renderValue={(selected) => {
+            if (selected.length === 0) {
+              return <em>전체</em>;
+            }
+
+            return selected.join(", ");
+          }}
+          MenuProps={MenuProps}
+          inputProps={{ "aria-label": "Without label" }}
+        >
+          {names.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+              style={getStyles(name, personName, theme)}
+            >
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </>
   );
 };
