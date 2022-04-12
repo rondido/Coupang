@@ -40,14 +40,6 @@ const Imgstyled = styled.image`
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 150,
-    },
-  },
-};
 
 const selectlist = ["오픈마켓", "여행·티켓", "로켓배송", "제휴마케팅"];
 
@@ -85,6 +77,7 @@ const names = [
   "실버스토어",
 ];
 
+
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -94,22 +87,14 @@ function getStyles(name, personName, theme) {
   };
 }
 
-function MultipleSelectPlaceholder() {
+
+
+
+
+const Header = () => {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
-}
-
-const Header = () => {
   const [visible, setVisible] = React.useState(false);
 
   const onMouseLeave = () => {
@@ -120,6 +105,26 @@ const Header = () => {
     setVisible(true);
   };
 
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 150,
+      },
+    },
+  };
+  
   return (
     <>
       <Flexstyled className="bg-gray-100 flex">
