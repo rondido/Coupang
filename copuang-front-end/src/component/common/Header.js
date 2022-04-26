@@ -3,10 +3,11 @@ import "../../../src/input.css";
 import styled from "styled-components";
 import { MenuItem, Select, TextField, IconButton, Icon } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import OutlinedInput from "@mui/material/OutlinedInput";
+
 import FormControl from "@mui/material/FormControl";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { fontSize, height } from "@mui/system";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
 const CategoryAstyled = styled.a`
   display: block;
@@ -43,6 +44,31 @@ const Menustyled = styled.div`
 
 const Pstyled = styled.p`
   fontsize: 12px;
+`;
+
+const Searchstyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const Selectstyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 157px;
+`;
+
+const Imgstyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const Alistyled = styled.a`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ITEM_HEIGHT = 48;
@@ -128,10 +154,8 @@ const Header = () => {
 
   return (
     <>
-      {" "}
       <div>
         <Flexstyled className="bg-gray-100 flex">
-          {" "}
           <ul className="flex">
             <Listyled>즐겨찾기</Listyled>
             <div onMouseLeave={onMouseLeave}>
@@ -153,126 +177,152 @@ const Header = () => {
             <Listyled>고객센터</Listyled>
           </ul>
         </Flexstyled>
-        {/* <div style={{backgroundColor:blue}}>
-        <CategoryBoxstyled>
+        <div className="flex">
+          <CategoryBoxstyled>
             <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="100px"
-                height="100px"
-                viewBox="0 0 24 24"
-                fill="none">
-                <line
-                    x1="8"
-                    y1="9"
-                    x2="15"
-                    y2="9"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"/>
-                <line
-                    x1="8"
-                    y1="12"
-                    x2="15"
-                    y2="12"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"/>
-                <line
-                    x1="8"
-                    y1="15"
-                    x2="15"
-                    y2="15"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"/>
+              xmlns="http://www.w3.org/2000/svg"
+              width="100px"
+              height="100px"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <line
+                x1="8"
+                y1="9"
+                x2="15"
+                y2="9"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <line
+                x1="8"
+                y1="12"
+                x2="15"
+                y2="12"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <line
+                x1="8"
+                y1="15"
+                x2="15"
+                y2="15"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
             <CategoryAstyled>카테고리</CategoryAstyled>
-        </CategoryBoxstyled> */}
-        <div className="flex">
-          <div>
-            <h1>
-              <a>
-                <img
-                  className="CoupangImage"
-                  alt="coupang"
-                  src="img/coupang.jpg"
-                  width="174px"
-                />
-              </a>
-            </h1>
-          </div>
+          </CategoryBoxstyled>
           <div className="flex">
-            <div className="flex-1">
-              <FormControl
-                sx={{
-                  m: 1,
-                  width: 150,
-                  mt: 1,
-                }}
-              >
-                <Select
-                  multiple="multiple"
-                  displayEmpty="displayEmpty"
-                  value={personName}
-                  onChange={handleChange}
-                  style={{
-                    fontSize: 12,
-                    height: 40,
-                    width: 100,
-                  }}
-                  renderValue={(selected) => {
-                    if (selected.length === 0) {
-                      return <em>전체</em>;
-                    }
-
-                    return selected.join(", ");
-                  }}
-                  MenuProps={MenuProps}
-                  inputProps={{
-                    "aria-label": "Without label",
+            <Imgstyled>
+              <h1>
+                <a>
+                  <img
+                    className="CoupangImage"
+                    alt="coupang"
+                    src="img/coupang.jpg"
+                    width="174px"
+                  />
+                </a>
+              </h1>
+            </Imgstyled>
+            <div className="flex">
+              <Selectstyled>
+                <FormControl
+                  sx={{
+                    m: 1,
+                    width: 150,
+                    mt: 1,
                   }}
                 >
-                  {names.map((name) => (
-                    <MenuItem
-                      key={name}
-                      value={name}
-                      style={getStyles(name, personName, theme)}
-                    >
-                      <Pstyled> {name}</Pstyled>
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
+                  <Select
+                    multiple="multiple"
+                    displayEmpty="displayEmpty"
+                    value={personName}
+                    onChange={handleChange}
+                    style={{
+                      fontSize: 12,
+                      height: 40,
+                      width: 150,
+                    }}
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <em>전체</em>;
+                      }
 
-            <div className="flex-initial w-64">
-              <TextField
-                hiddenLabel="hiddenLabel"
-                id="filled-hidden-label-normal"
-                placeholder="찾고 싶은 상품을 검색해보세요!"
-                variant="outlined"
-                size="small"
-                style={{
-                  width: 310,
-                }}
-              />
-            </div>
-            <div>
-              <IconButton
-                color="primary"
-                aria-label="upload picture"
-                component="span"
-              >
-                <SearchOutlinedIcon />
-              </IconButton>
+                      return selected.join(", ");
+                    }}
+                    MenuProps={MenuProps}
+                    inputProps={{
+                      "aria-label": "Without label",
+                    }}
+                  >
+                    {names.map((name) => (
+                      <MenuItem
+                        key={name}
+                        value={name}
+                        style={getStyles(name, personName, theme)}
+                      >
+                        <Pstyled> {name}</Pstyled>
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Selectstyled>
+
+              <Searchstyled className="flex-initial w-15">
+                <TextField
+                  hiddenLabel="hiddenLabel"
+                  id="filled-hidden-label-normal"
+                  placeholder="찾고 싶은 상품을 검색해보세요!"
+                  variant="outlined"
+                  size="small"
+                  style={{
+                    width: 350,
+                  }}
+                />
+              </Searchstyled>
+              <div>
+                <IconButton
+                  color="primary"
+                  aria-label="upload picture"
+                  component="span"
+                  style={{
+                    marginTop: 30,
+                    marginLeft: -38,
+                  }}
+                >
+                  <SearchOutlinedIcon />
+                </IconButton>
+              </div>
+              <ul className="flex">
+                <li>
+                  <Alistyled style={{ width: 100, marginTop: 28 }}>
+                    <PersonOutlineIcon sx={{ fontSize: 40 }} />
+                    <span style={{ fontSize: 12, paddingTop: 7 }}>
+                      마이쿠팡
+                    </span>
+                  </Alistyled>
+                </li>
+                <li>
+                  <Alistyled style={{ marginTop: 28 }}>
+                    <ShoppingCartOutlinedIcon sx={{ fontSize: 40 }} />
+                    <span style={{ fontSize: 12, paddingTop: 7 }}>
+                      장바구니
+                    </span>
+                  </Alistyled>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 };
