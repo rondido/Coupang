@@ -17,25 +17,43 @@ const CategoryAstyled = styled.a`
   color: white;
 `;
 
-const Flexstyled = styled.header`
-  display: flex;
-  justify-content: space-around;
+const Articlestyled = styled.article`
   list-style: none;
   font-size: 100%;
 `;
 
-const Listyled = styled.li`
-  padding: 10px 0px 0px 12px;
+const Headerstyled = styled.header`
+  list-style: none;
+  font-size: 100%;
+`;
+
+const SectionAstyled = styled.a`
   font-family: sans-serif;
   text-decoration: none;
   font-size: 11px;
 `;
 
+const Sestyled = styled.section`
+  position: relative;
+  margin: 28px 0 0 140px;
+`;
+
+const TopbarSestyled = styled.section`
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+`;
+
 const CategoryBoxstyled = styled.div`
   background: skyblue;
   width: 100px;
-  display: inline-block;
-  position: relative;
+  position: absolute;
+  top: 28px;
+  left: 0px;
+  margin-right: 30px;
+  background-position: 0 0;
+  text-align: center;
 `;
 
 const Menustyled = styled.div`
@@ -47,28 +65,52 @@ const Pstyled = styled.p`
 `;
 
 const Searchstyled = styled.div`
+  float: left;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  width: 484px px;
+  height: 37px;
+  margin-right: 13px;
+  background-position: 0 -207px;
+  margin-top: 12px;
 `;
 
 const Selectstyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   width: 157px;
 `;
 
-const Imgstyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+const Articlelistyled = styled.li`
+  padding-left: 10px;
+  height: 26px;
+  position: relative;
+  padding-top: 2px;
+  float: left;
 `;
 
-const Alistyled = styled.a`
+const Articleli1styled = styled.li`
+  padding-left: 10px;
+  height: 26px;
+  position: relative;
+  padding-top: 2px;
+  float: left;
+`;
+
+const Imgstyled = styled.div`
+  position: relative;
+  z-index: 3;
+`;
+
+const Hstyle = styled.h1`
+  width: 174px;
+  height: 41px;
+  margin: 2px 20px 0 0;
+  float: left;
+`;
+
+const Spanstyle = styled.span`
+  font-size: 12px;
+  padding-top: 7px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-family: sans-serif;
 `;
 
 const ITEM_HEIGHT = 48;
@@ -154,74 +196,11 @@ const Header = () => {
 
   return (
     <>
-      <div>
-        <Flexstyled className="bg-gray-100 flex">
-          <ul className="flex">
-            <Listyled>즐겨찾기</Listyled>
-            <div onMouseLeave={onMouseLeave}>
-              <Listyled onMouseOver={onMouseOver}>입점신청</Listyled>
-              {visible && (
-                <Menustyled>
-                  {selectlist.map((name) => (
-                    <MenuItem key={name} value={name}>
-                      {name}
-                    </MenuItem>
-                  ))}
-                </Menustyled>
-              )}
-            </div>
-          </ul>
-          <ul className="flex">
-            <Listyled>로그인</Listyled>
-            <Listyled>회원가입</Listyled>
-            <Listyled>고객센터</Listyled>
-          </ul>
-        </Flexstyled>
-        <div className="flex">
-          <CategoryBoxstyled>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="100px"
-              height="100px"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <line
-                x1="8"
-                y1="9"
-                x2="15"
-                y2="9"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <line
-                x1="8"
-                y1="12"
-                x2="15"
-                y2="12"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <line
-                x1="8"
-                y1="15"
-                x2="15"
-                y2="15"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <CategoryAstyled>카테고리</CategoryAstyled>
-          </CategoryBoxstyled>
+      <Headerstyled>
+        <Sestyled>
           <div className="flex">
             <Imgstyled>
-              <h1>
+              <Hstyle>
                 <a>
                   <img
                     className="CoupangImage"
@@ -230,9 +209,9 @@ const Header = () => {
                     width="174px"
                   />
                 </a>
-              </h1>
+              </Hstyle>
             </Imgstyled>
-            <div className="flex">
+            <Searchstyled>
               <Selectstyled>
                 <FormControl
                   sx={{
@@ -276,7 +255,7 @@ const Header = () => {
                 </FormControl>
               </Selectstyled>
 
-              <Searchstyled className="flex-initial w-15">
+              <div>
                 <TextField
                   hiddenLabel="hiddenLabel"
                   id="filled-hidden-label-normal"
@@ -285,44 +264,133 @@ const Header = () => {
                   size="small"
                   style={{
                     width: 350,
+                    top: 8,
                   }}
                 />
-              </Searchstyled>
+              </div>
               <div>
                 <IconButton
                   color="primary"
                   aria-label="upload picture"
                   component="span"
                   style={{
-                    marginTop: 30,
+                    marginTop: 8,
                     marginLeft: -38,
                   }}
                 >
                   <SearchOutlinedIcon />
                 </IconButton>
               </div>
-              <ul className="flex">
-                <li>
-                  <Alistyled style={{ width: 100, marginTop: 28 }}>
-                    <PersonOutlineIcon sx={{ fontSize: 40 }} />
-                    <span style={{ fontSize: 12, paddingTop: 7 }}>
-                      마이쿠팡
-                    </span>
-                  </Alistyled>
-                </li>
-                <li>
-                  <Alistyled style={{ marginTop: 28 }}>
-                    <ShoppingCartOutlinedIcon sx={{ fontSize: 40 }} />
-                    <span style={{ fontSize: 12, paddingTop: 7 }}>
-                      장바구니
-                    </span>
-                  </Alistyled>
-                </li>
-              </ul>
-            </div>
+            </Searchstyled>
+            <ul className="flex mt-5">
+              <li className="mr-7">
+                <a style={{ marginTop: 28 }}>
+                  <PersonOutlineIcon
+                    sx={{
+                      fontSize: 45,
+                    }}
+                  />
+                  <Spanstyle>마이쿠팡</Spanstyle>
+                </a>
+              </li>
+              <li>
+                <a style={{ marginTop: 28 }}>
+                  <ShoppingCartOutlinedIcon sx={{ fontSize: 45 }} />
+                  <Spanstyle>장바구니</Spanstyle>
+                </a>
+              </li>
+            </ul>
           </div>
-        </div>
-      </div>
+        </Sestyled>
+        <CategoryBoxstyled>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100px"
+            height="100px"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <line
+              x1="8"
+              y1="9"
+              x2="15"
+              y2="9"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <line
+              x1="8"
+              y1="12"
+              x2="15"
+              y2="12"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <line
+              x1="8"
+              y1="15"
+              x2="15"
+              y2="15"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <CategoryAstyled>카테고리</CategoryAstyled>
+        </CategoryBoxstyled>
+
+        {/* <ul>
+            <li>로켓배송</li>
+            <li>로켓프레시</li>
+            <li>가정의 달</li>
+            <li>쿠팡비즈</li>
+            <li>로켓지구</li>
+            <li>골드박스</li>
+            <li>와우회원할인</li>
+            <li>이벤트/쿠폰</li>
+            <li>기획전</li>
+            <li>여행/티켓</li>
+          </ul> */}
+      </Headerstyled>
+      <Articlestyled className="absolute h-7 top-0 inset-x-0	z-3 bg-neutral-300">
+        <TopbarSestyled>
+          <menu className="float-right relative">
+            <Articlelistyled>
+              <SectionAstyled>로그인</SectionAstyled>
+            </Articlelistyled>
+            <Articlelistyled>
+              <SectionAstyled>회원가입</SectionAstyled>
+            </Articlelistyled>
+            <Articlelistyled>
+              <SectionAstyled>고객센터</SectionAstyled>
+            </Articlelistyled>
+          </menu>
+          <menu className="float-left relative">
+            <Articleli1styled>
+              <SectionAstyled>즐겨찾기</SectionAstyled>
+            </Articleli1styled>
+            <Articleli1styled onMouseLeave={onMouseLeave}>
+              <SectionAstyled onMouseOver={onMouseOver}>
+                입점신청
+              </SectionAstyled>
+              {visible && (
+                <Menustyled>
+                  {selectlist.map((name) => (
+                    <MenuItem key={name} value={name}>
+                      {name}
+                    </MenuItem>
+                  ))}
+                </Menustyled>
+              )}
+            </Articleli1styled>
+          </menu>
+        </TopbarSestyled>
+      </Articlestyled>
     </>
   );
 };
