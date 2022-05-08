@@ -13,6 +13,7 @@ const MainPage = () => {
     <>
       <Blockstyle>
         <Header />
+        <Footer />
       </Blockstyle>
     </>
   );
